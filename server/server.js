@@ -19,7 +19,7 @@ app.post('/usuario', function (req, res) {
 	
 	let body = req.body;
 
-	if (!body.nombre) {
+	if (body.nombre === undefined) {
 		res.status(400).json({
 			ok: false,
 			mensaje: 'El nombre es necesario',
