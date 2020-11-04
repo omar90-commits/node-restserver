@@ -113,7 +113,6 @@ app.post('/google', async (req, res) => {
 				});
 			}
 
-
 		} else {
 			//Si el usuario no existe en nuestras bases de datos.
 			const usuario = new Usuario();
