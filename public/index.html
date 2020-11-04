@@ -12,38 +12,40 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
+    <!-- <img src="http://localhost:3000/imagen/usuarios/5f9759f21cf71b1a303d7562-276.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7InJvbGUiOiJBRE1JTl9ST0xFIiwiZXN0YWRvIjpmYWxzZSwiZ29vZ2xlIjpmYWxzZSwiX2lkIjoiNWY5NzU5ZWMxY2Y3MWIxYTMwM2Q3NTYxIiwibm9tYnJlIjoiUmF1bCBKYWltZXMiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsIl9fdiI6MH0sImlhdCI6MTYwNDQxNjQ1NSwiZXhwIjoxNjA0NTg5MjU1fQ.vH8fwB39iht_pH2Za6MGI4Stx6XPo4IjS8xXUujn520"> -->
+
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
     <a href="#" onclick="signOut();">Sign out</a>
-	<script>
-		function signOut() {
-			var auth2 = gapi.auth2.getAuthInstance();
-			auth2.signOut().then(function () {
-				console.log('User signed out.');
-			});
-		}
-	</script>
+  	<script>
+  		function signOut() {
+  			var auth2 = gapi.auth2.getAuthInstance();
+  			auth2.signOut().then(function () {
+  				console.log('User signed out.');
+  			});
+  		}
+  	</script>
 
-    <script type="text/javascript">
-    	function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			console.log('ID: ' + profile.getId());
-			console.log('Name: ' + profile.getName());
-			console.log('Image URL: ' + profile.getImageUrl());
-			console.log('Email: ' + profile.getEmail()); 
+      <script type="text/javascript">
+      	function onSignIn(googleUser) {
+  			var profile = googleUser.getBasicProfile();
+  			console.log('ID: ' + profile.getId());
+  			console.log('Name: ' + profile.getName());
+  			console.log('Image URL: ' + profile.getImageUrl());
+  			console.log('Email: ' + profile.getEmail()); 
 
-      var id_token = googleUser.getAuthResponse().id_token;
+        var id_token = googleUser.getAuthResponse().id_token;
 
-      console.log(id_token)
-      
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/google');
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onload = function() {
-        console.log('Signed in as: ' + xhr.responseText);
-      };
-      xhr.send('idtoken=' + id_token);
-		}
-    </script>
+        console.log(id_token)
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/google');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token);
+  		}
+      </script>
   </body>
 </html>
